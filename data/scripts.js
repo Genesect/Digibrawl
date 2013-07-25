@@ -387,7 +387,7 @@ exports.BattleScripts = {
 		// Pick three random Digimon
 		for (var i=0; i<3; i++) {
 			while (true) {
-				var x=Math.floor(Math.random()*1152)+1;
+				var  x = Math.floor(Math.random()*1152)+1;
 				if (teamnum.indexOf(x) === -1) {
 					teamnum.push(x);
 					break;
@@ -395,7 +395,14 @@ exports.BattleScripts = {
 			}
 		}
 		for (var i=0; i<3; i++) {
-			var digi = formes.sample();
+			var chosen = [];
+			for (var j in this.data.Digivice) {
+				if (this.data.Digivice[j].num === teamnum[i]) {
+					chosen.push(this.data.Digivice[j].species);
+					break;
+				}
+			}
+			var digi = chosen.sample();
 			var template = this.getTemplate(digi);
 
 			// Level balance
@@ -410,24 +417,14 @@ exports.BattleScripts = {
 			mbst += (stats["ev"])+5;
 			mbst += (stats["ht"])+5;
 			mbst += (stats["bl"])+5;	
-			var level = Math.floor(100*mbstmin/mbst);
+			var level = Math.floor(90*mbstmin/mbst);
 
 			// Random item
-			var item = Object.keys(this.data.Items).sample();
-
-			//four random unique moves from movepool. don't worry about "attacking" or "viable"
-			var moves;
-			var pool = [];
-			pool = Object.keys(template.learnset);
-			if (pool.length <= 4) {
-				moves = pool;
-			} else {
-				moves = pool.sample(4);
-			}
+			// var item = Object.keys(this.data.Items).sample();
 
 			team.push({
 				name: digi,
-				moves: moves,
+				moves: Object.keys(template.learnset),
 				item: item,
 				level: level
 			});
