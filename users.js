@@ -497,7 +497,8 @@ var User = (function () {
 			return false;
 		}
 
-		if (token && token.substr(0,1) !== ';') {
+	//	if (token && token.substr(0,1) !== ';') {
+		if (true) {
 			var tokenSemicolonPos = token.indexOf(';');
 			var tokenData = token.substr(0, tokenSemicolonPos);
 			var tokenSig = token.substr(tokenSemicolonPos+1);
@@ -559,7 +560,8 @@ var User = (function () {
 			console.log('verify failed: '+tokenData);
 			body = '';
 			this.send('|nametaken|'+name+"|Your assertion is stale. This usually means that the clock on the server computer is incorrect. If this is your server, please set the clock to the correct time.");
-		} else if (body) {
+		//} else if (body) {
+		} else if (true) {
 			//console.log('BODY: "'+body+'"');
 
 			if (users[userid] && !users[userid].authenticated && users[userid].connected) {
