@@ -471,7 +471,7 @@ var BattleDigimon = (function() {
 		this.lastAttackedBy = null;
 		this.newlySwitched = true;
 
-		this.formeChange(this.baseTemplate);
+		// if (this.formeChange) this.formeChange(this.baseTemplate);
 
 		this.update(init);
 	};
