@@ -563,6 +563,9 @@ var BattleDigimon = (function() {
 		}
 		return d;
 	};
+	BattlePokemon.prototype.getStatus = function() {
+		return this.battle.getEffect(this.status);
+	};
 	BattleDigimon.prototype.eatItem = function(item, source, sourceEffect) {
 		if (!this.hp || !this.isActive) return false;
 		if (!this.item) return false;
@@ -1471,17 +1474,12 @@ var Battle = (function() {
 				this.resolveLastPriority(statuses,callbackType);
 			}
 		}
-		status = thing.getAbility();
-		if (typeof status[callbackType] !== 'undefined' || (getAll && thing.abilityData[getAll])) {
-			statuses.push({status: status, callback: status[callbackType], statusData: thing.abilityData, end: thing.clearAbility, thing: thing});
-			this.resolveLastPriority(statuses,callbackType);
-		}
-		status = thing.getItem();
+		/*status = thing.getItem();
 		if (typeof status[callbackType] !== 'undefined' || (getAll && thing.itemData[getAll])) {
 			statuses.push({status: status, callback: status[callbackType], statusData: thing.itemData, end: thing.clearItem, thing: thing});
 			this.resolveLastPriority(statuses,callbackType);
-		}
-		status = this.getEffect(thing.template.baseSpecies);
+		}*/
+		status = this.getEffect(thing.template.name);
 		if (typeof status[callbackType] !== 'undefined') {
 			statuses.push({status: status, callback: status[callbackType], statusData: thing.speciesData, end: function(){}, thing: thing});
 			this.resolveLastPriority(statuses,callbackType);
