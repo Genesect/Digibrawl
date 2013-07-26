@@ -77,10 +77,6 @@ module.exports = (function () {
 		if (!template || typeof template === 'string') {
 			var name = (template||'').trim();
 			var id = toId(name);
-			if (this.data.Aliases[id]) {
-				name = this.data.Aliases[id];
-				id = toId(name);
-			}
 			template = {};
 			if (id && this.data.Digivice[id]) {
 				template = this.data.Digivice[id];
