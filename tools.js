@@ -12,6 +12,7 @@
  */
 
 module.exports = (function () {
+	var moddedTools = {};
 	var dataTypes = ['Learnsets', 'Digivice', 'Moves', 'TypeChart', 'Scripts', 'Items', 'Formats'];
 	var dataFiles = {
 		'Digivice': 'digivice.js',
