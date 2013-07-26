@@ -563,7 +563,7 @@ var BattleDigimon = (function() {
 		}
 		return d;
 	};
-	BattlePokemon.prototype.getStatus = function() {
+	BattleDigimon.prototype.getStatus = function() {
 		return this.battle.getEffect(this.status);
 	};
 	BattleDigimon.prototype.eatItem = function(item, source, sourceEffect) {
