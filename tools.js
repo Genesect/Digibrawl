@@ -569,7 +569,7 @@ module.exports = (function () {
 		}
 	};
 	Tools.construct = function() {
-		var tools = new Tools(mod);
+		var tools = new Tools();
 		// Scripts override Tools.
 		var ret = Object.create(tools);
 		tools.install(ret);
