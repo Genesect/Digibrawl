@@ -10,7 +10,7 @@ exports.BattleScripts = {
 		move = this.getMove(move);
 		if (!target) target = this.resolveTarget(digimon, move);
 
-		this.setActiveMove(move, digimon, target
+		this.setActiveMove(move, digimon, target);
 
 		if (digimon.moveThisTurn) {
 			// THIS IS PURELY A SANITY CHECK
