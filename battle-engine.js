@@ -223,7 +223,7 @@ var BattleDigimon = (function() {
 		}
 		this.boosts = {hp:0, ds:0, at:0, de:0,ct:0, ev:0, ht:0, bl:0, as:0};
 		this.stats = {hp:0, ds:0, at:0, de:0,ct:0, ev:0, ht:0, bl:0, as:0};
-		this.maxhp = this.template.baseStats['hp'];
+		this.maxhp = this.template.stats['hp'];
 		this.hp = this.hp || this.maxhp;
 		this.clearVolatile(true);
 	}
@@ -1105,10 +1105,10 @@ var Battle = (function() {
 	Battle.comparePriority = function(a, b) { // intentionally not in Battle.prototype
 		a.priority = a.priority || 0;
 		a.subPriority = a.subPriority || 0;
-		a.speed = a.baseStats.as || 0;
+		a.speed = a.stats.as || 0;
 		b.priority = b.priority || 0;
 		b.subPriority = b.subPriority || 0;
-		b.speed = b.baseStats.as || 0;
+		b.speed = b.stats.as || 0;
 		if ((typeof a.order === 'number' || typeof b.order === 'number') && a.order !== b.order) {
 			if (typeof a.order !== 'number') {
 				return -(1);

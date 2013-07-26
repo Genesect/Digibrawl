@@ -10,7 +10,7 @@ exports.BattleScripts = {
 		move = this.getMove(move);
 		if (!target) target = this.resolveTarget(digimon, move);
 
-		this.setActiveMove(move, digimon, target);
+		this.setActiveMove(move, digimon, target
 
 		if (digimon.moveThisTurn) {
 			// THIS IS PURELY A SANITY CHECK
@@ -411,14 +411,14 @@ exports.BattleScripts = {
 			var mbstmin = 1000;
 			var stats = template.baseStats;
 
-			var mbst = (stats['AS'])+10;
-			mbst += (stats['DS'])+5;
-			mbst += (stats['AT'])+5;
-			mbst += (stats['DE'])+5;
-			mbst += (stats['CT'])+5;
-			mbst += (stats['EV'])+5;
-			mbst += (stats['HT'])+5;
-			mbst += (stats['BL'])+5;	
+			var mbst = (stats['as'])+10;
+			mbst += (stats['ds'])+5;
+			mbst += (stats['at'])+5;
+			mbst += (stats['de'])+5;
+			mbst += (stats['ct'])+5;
+			mbst += (stats['ev'])+5;
+			mbst += (stats['ht'])+5;
+			mbst += (stats['bl'])+5;	
 			var level = Math.floor(90*mbstmin/mbst);
 
 			// Random item
