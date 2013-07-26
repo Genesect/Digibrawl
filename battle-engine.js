@@ -920,6 +920,7 @@ var Battle = (function() {
 				};
 				var battle = Object.create(proto);
 				var ret = Object.create(battle);
+				tools.install(ret);
 				return battleProtoCache[formatarg] = ret;
 			})());
 			Battle.prototype.init.call(battle, roomid, formatarg, rated);

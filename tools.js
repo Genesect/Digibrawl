@@ -23,16 +23,21 @@ module.exports = (function () {
 		'Learnsets': 'learnsets.js'
 	};
 	function Tools() {
-		this.data = {};
+		var data = this.data = {
+			mod: mod
+		};
+		this.isBase = true;
 
 		dataTypes.forEach(function(dataType) {
 			try {
 				var path = './data/' + dataFiles[dataType];
-				if (fs.existsSync(path)) this.data[dataType] = require(path)['Battle' + dataType];
+				if (fs.existsSync(path)) {
+					data[dataType] = require(path)['Battle' + dataType];
+				}
 			} catch (e) {
 				console.log(e.stack);
 			}
-			if (!this.data[dataType]) this.data[dataType] = {};
+			if (!data[dataType]) data[dataType] = {};
 		}, this);
 		try {
 			var path = './config/formats.js';
@@ -41,15 +46,13 @@ module.exports = (function () {
 				for (var i=0; i<configFormats.length; i++) {
 					var id = toId(configFormats[i].name);
 					configFormats[i].effectType = 'Format';
-					this.data.Formats[id] = configFormats[i];
+					data.Formats[id] = configFormats[i];
 				}
 			}
 		} catch (e) {
 			console.log(e.stack);
 		}
 	}
-
-	var moddedTools = {};
 	Tools.prototype.mod = function(mod) {
 		if (!moddedTools[mod]) {
 			mod = this.getFormat(mod).mod;
@@ -556,8 +559,23 @@ module.exports = (function () {
 		if (!problems.length) return false;
 		return problems;
 	};
+	/**
+	 * Install our Tools functions into the battle object
+	 */
+	Tools.prototype.install = function(battle) {
+		for (var i in this.data.Scripts) {
+			battle[i] = this.data.Scripts[i];
+		}
+	};
 	Tools.construct = function() {
-		return new Tools();
+		var tools = new Tools(mod);
+		// Scripts override Tools.
+		var ret = Object.create(tools);
+		tools.install(ret);
+		if (ret.init) {
+			ret.init();
+		}
+		return ret;
 	};
 
 	moddedTools.base = Tools.construct();
