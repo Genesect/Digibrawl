@@ -1245,9 +1245,8 @@ var Battle = (function() {
 	 * Event handlers
 	 * ==============
 	 *
-	 * Items, abilities, statuses, and other effects like SR, confusion, weather,
-	 * or Trick Room can have event handlers. Event handlers are functions that
-	 * can modify what happens during an event.
+	 * Items, statuses, and other effects can have event handlers.
+	 * Event handlers are functions that can modify what happens during an event.
 	 *
 	 * event handlers are passed:
 	 *   function(target, source, effect)
@@ -2376,8 +2375,7 @@ var Battle = (function() {
 			break;
 		case 'runSwitch':
 			decision.digimon.isStarted = true;
-			this.singleEvent('Start', decision.digimon.getAbility(), decision.digimon.abilityData, decision.digimon);
-			this.singleEvent('Start', decision.digimon.getItem(), decision.digimon.itemData, decision.digimon);
+			// TODO: Items this.singleEvent('Start', decision.digimon.getItem(), decision.digimon.itemData, decision.digimon);
 			break;
 		case 'beforeTurn':
 			this.eachEvent('BeforeTurn');
