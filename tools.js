@@ -24,9 +24,7 @@ module.exports = (function () {
 		'Learnsets': 'learnsets.js'
 	};
 	function Tools() {
-		var data = this.data = {
-			mod: mod
-		};
+		var data = this.data = {mod: 'base'};
 		this.isBase = true;
 
 		dataTypes.forEach(function(dataType) {
@@ -54,12 +52,8 @@ module.exports = (function () {
 			console.log(e.stack);
 		}
 	}
-	Tools.prototype.mod = function(mod) {
-		if (!moddedTools[mod]) {
-			mod = this.getFormat(mod).mod;
-		}
-		if (!mod) mod = 'base';
-		return moddedTools[mod];
+	Tools.prototype.mod = function() {
+		return moddedTools['base'];
 	};
 	Tools.prototype.modData = function(dataType, id) {
 		return this.data[dataType][id];
