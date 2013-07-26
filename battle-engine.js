@@ -471,7 +471,7 @@ var BattleDigimon = (function() {
 		this.lastAttackedBy = null;
 		this.newlySwitched = true;
 
-		this.formeChange(this.baseTemplate);
+		// if (this.formeChange) this.formeChange(this.baseTemplate);
 
 		this.update(init);
 	};
@@ -1147,6 +1147,23 @@ var Battle = (function() {
 			if (actives[i].isStarted) {
 				this.runEvent(eventid, actives[i], null, effect, relayVar);
 			}
+		}
+	};
+	Battle.prototype.residualEvent = function(eventid, relayVar) {
+		var statuses = this.getRelevantEffectsInner(this, 'on'+eventid, null, null, false, true, 'duration');
+		statuses.sort(Battle.comparePriority);
+		while (statuses.length) {
+			var statusObj = statuses.shift();
+			var status = statusObj.status;
+			if (statusObj.thing.fainted) continue;
+			if (statusObj.statusData && statusObj.statusData.duration) {
+				statusObj.statusData.duration--;
+				if (!statusObj.statusData.duration) {
+					statusObj.end.call(statusObj.thing, status.id);
+					continue;
+				}
+			}
+			this.singleEvent(eventid, status, statusObj.statusData, statusObj.thing, relayVar);
 		}
 	};
 	// The entire event system revolves around this function

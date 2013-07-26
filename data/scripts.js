@@ -404,7 +404,6 @@ exports.BattleScripts = {
 			}
 			var digi = chosen.sample();
 			var template = this.getTemplate(digi);
-			console.log(template);
 
 			// Level balance
 			var mbstmin = 1000;
