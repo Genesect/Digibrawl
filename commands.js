@@ -20,13 +20,6 @@ var commands = exports.commands = {
 		this.sendReplyBox('Server version: <b>'+CommandParser.package.version+'</b> <small>(<a href="http://www.digibrawl.com/versions#' + CommandParser.serverVersion + '">' + CommandParser.serverVersion.substr(0,10) + '</a>)</small>');
 	},
 
-	me: function(target, room, user, connection) {
-		target = this.canTalk(target);
-		if (!target) return;
-
-		return '/me ' + target;
-	},
-
 	avatar: function(target, room, user) {
 		if (!target) return this.parse('/avatars');
 		var parts = target.split(',');
