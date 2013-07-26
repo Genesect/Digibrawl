@@ -85,12 +85,6 @@ module.exports = (function () {
 				template.exists = true;
 			}
 			name = template.name || template.name || name;
-			if (this.data.FormatsData[id]) {
-				Object.merge(template, this.data.FormatsData[id]);
-			}
-			if (this.data.Learnsets[id]) {
-				Object.merge(template, this.data.Learnsets[id]);
-			}
 			if (!template.id) template.id = id;
 			if (!template.name) template.name = name;
 			if (!template.forme) template.forme = '';
