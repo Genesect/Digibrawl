@@ -408,6 +408,7 @@ exports.BattleScripts = {
 			var template = this.getTemplate(digi);
 
 			// Level balance
+			/** TODO
 			var mbstmin = 1000;
 			var stats = template.baseStats;
 
@@ -419,7 +420,8 @@ exports.BattleScripts = {
 			mbst += (stats['ev'])+5;
 			mbst += (stats['ht'])+5;
 			mbst += (stats['bl'])+5;	
-			var level = Math.floor(90*mbstmin/mbst);
+			var level = Math.floor(90*mbstmin/mbst);*/
+			var level = 90;
 
 			// Random item
 			// var item = Object.keys(this.data.Items).sample();
