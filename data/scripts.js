@@ -383,16 +383,18 @@ exports.BattleScripts = {
 	randomTeam: function(side) {
 		var teamnum = [];
 		var team = [];
-
+		var available = [1, 10, 11, 12, 13, 53, 55, 144, 146, 197, 213, 248, 289, 365, 445, 520, 533, 534, 546, 564, 675, 701, 739, 766, 767, 776, 798, 813, 816, 824, 826, 828, 830, 831, 851, 1028, 1044];
+		available = available.randomize();
 		// Pick three random Digimon
 		for (var i=0; i<3; i++) {
-			while (true) {
+		/*	while (true) {
 				var  x = Math.floor(Math.random()*1152)+1;
 				if (teamnum.indexOf(x) === -1) {
 					teamnum.push(x);
 					break;
 				}
-			}
+			}*/
+			teamnum.push(available[i]);
 		}
 		for (var i=0; i<3; i++) {
 			var chosen = [];
@@ -425,7 +427,7 @@ exports.BattleScripts = {
 			team.push({
 				name: digi,
 				moves: Object.keys(template.learnset),
-				item: item,
+				items: ['', ''], //item,
 				level: level
 			});
 		}
