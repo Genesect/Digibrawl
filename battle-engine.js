@@ -173,20 +173,14 @@ var BattleDigimon = (function() {
 		// "pre-bound" functions for nicer syntax (avoids repeated use of `bind`)
 		this.getHealth = BattleDigimon.getHealth.bind(this);
 		this.getDetails = BattleDigimon.getDetails.bind(this);
-
 		this.set = set;
-
-		this.baseTemplate = this.battle.getTemplate(set.species || set.name);
+		this.baseTemplate = this.battle.getTemplate(set.name);
 		if (!this.baseTemplate.exists) {
-			this.battle.debug('Unidentified species: ' + this.species);
+			this.battle.debug('Unidentified species: ' + this.name);
 			this.baseTemplate = this.battle.getTemplate('Agumon');
 		}
-		this.species = this.baseTemplate.species;
-		if (set.name === set.species || !set.name || !set.species) {
-			set.name = this.species;
-		}
-		this.name = (set.name || set.species || 'Agumon').substr(0,20);
-		this.speciesid = toId(this.species);
+		this.name = (set.name || template.name || 'Agumon').substr(0,20);
+		this.id = toId(this.name);
 		this.template = this.baseTemplate;
 		this.attribute = this.baseTemplate.attribute;
 		this.element = this.baseTemplate.element;
@@ -204,7 +198,7 @@ var BattleDigimon = (function() {
 		this.ignore = {};
 		this.items = [toId(set.items[0]), toId(set.items[1])];
 		this.itemsData = {0:{id: this.items[0]}, 1:{id: this.items[1]}};
-		this.speciesData = {id: this.speciesid};
+		this.speciesData = {id: this.id};
 
 		if (this.set.moves) {
 			for (var i=0; i<this.set.moves.length; i++) {
@@ -223,7 +217,7 @@ var BattleDigimon = (function() {
 		}
 		this.boosts = {hp:0, ds:0, at:0, de:0,ct:0, ev:0, ht:0, bl:0, as:0};
 		this.stats = {hp:0, ds:0, at:0, de:0,ct:0, ev:0, ht:0, bl:0, as:0};
-		this.maxhp = this.template.stats['hp'];
+		this.maxhp = this.template.baseStats['hp'];
 		this.hp = this.hp || this.maxhp;
 		this.clearVolatile(true);
 	}
