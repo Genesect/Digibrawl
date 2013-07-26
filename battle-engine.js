@@ -343,7 +343,7 @@ var BattleDigimon = (function() {
 		};
 		if (movesPerStage[stage]) move = movesPerStage[stage];
 
-		return this.getMove(move);
+		return this.battle.getMove(move);
 	};
 	BattleDigimon.prototype.getMoves = function(lockedMove) {
 		if (lockedMove) {
