@@ -1420,11 +1420,6 @@ var Battle = (function() {
 					this.resolveLastPriority(statuses,callbackType);
 				}
 			}
-			status = this.getWeather();
-			if (typeof status[callbackType] !== 'undefined' || (getAll && thing.weatherData[getAll])) {
-				statuses.push({status: status, callback: status[callbackType], statusData: this.weatherData, end: this.clearWeather, thing: thing, priority: status[callbackType+'Priority']||0});
-				this.resolveLastPriority(statuses,callbackType);
-			}
 			status = this.getFormat();
 			if (typeof status[callbackType] !== 'undefined' || (getAll && thing.formatData[getAll])) {
 				statuses.push({status: status, callback: status[callbackType], statusData: this.formatData, end: function(){}, thing: thing, priority: status[callbackType+'Priority']||0});
