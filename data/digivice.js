@@ -1,4 +1,4 @@
-exports.Digivice = {
+exports.BattleDigivice = {
 	aegiochusmon: {num:6},
 	aegiomon: {num:7},
 	aegisdramon: {num:8},
